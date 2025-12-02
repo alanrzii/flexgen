@@ -1,0 +1,3712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexGen AI - Ultimate AI Fitness Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #0ea5e9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #ffffff;
+            --dark: #0f172a;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .top-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-brand i {
+            font-size: 28px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-brand span {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            color: var(--gray-700);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-link:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-300);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Calorie Calculator */
+        .calculator-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .calculator-container {
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .calculator-result {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-top: 30px;
+            display: none;
+            border: 2px solid var(--primary);
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Workout Plans */
+        .workout-plans-section {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-700);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .plan-header {
+            padding: 40px 30px;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .plan-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .plan-body {
+            padding: 40px 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features i {
+            color: var(--success);
+            font-size: 1.125rem;
+        }
+
+        /* Meal Plans Section */
+        .meal-plans-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .meal-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .meal-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .meal-content {
+            padding: 30px;
+        }
+
+        .meal-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        .meal-macros {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--gray-50);
+            border-radius: var(--radius-md);
+        }
+
+        .macro-item {
+            text-align: center;
+        }
+
+        .macro-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .macro-label {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            text-transform: uppercase;
+        }
+
+        /* AI Chat Section */
+        .ai-chat-section {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 25px 30px;
+            background: var(--gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: var(--radius-lg);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: var(--gray-100);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: var(--gradient);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+        }
+
+        /* Dashboard */
+        .dashboard-section {
+            padding: 160px 0 100px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .widget {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .widget-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--gray-200);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        /* Plan Details Section */
+        .plan-details-section {
+            padding: 100px 0;
+            background: var(--gray-50);
+            display: none;
+        }
+
+        .plan-details-content {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plan-schedule {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .day-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .day-card h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-400);
+        }
+
+        /* Demo Video Modal */
+        .demo-modal .modal-content {
+            max-width: 800px;
+        }
+
+        .demo-video {
+            width: 100%;
+            height: 400px;
+            background: var(--dark);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 500;
+            z-index: 3000;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 400px;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+        }
+        /* ========== WORKOUT TIMER STYLES ========== */
+.timer-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.timer-container {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    color: white;
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+}
+
+.timer-display {
+    margin-bottom: 30px;
+}
+
+.time {
+    font-size: 6rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-family: monospace;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.timer-status {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.timer-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.timer-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.timer-presets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.preset-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.preset-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.interval-timer {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    margin-top: 20px;
+}
+
+.interval-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.interval-controls .form-group {
+    margin: 0;
+}
+
+.interval-controls input {
+    background: white;
+    color: var(--dark);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ========== VIDEO LIBRARY STYLES ========== */
+.video-library-section {
+    padding: 100px 0;
+    background: var(--gray-50);
+}
+
+.video-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.video-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.video-thumbnail {
+    position: relative;
+    height: 180px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 48px;
+}
+
+.video-thumbnail i {
+    opacity: 0.8;
+}
+
+.video-thumbnail::after {
+    content: attr(data-duration);
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.video-info {
+    padding: 20px;
+}
+
+.video-info h3 {
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.video-info p {
+    color: var(--gray-700);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.video-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.video-tag {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.video-player {
+    width: 100%;
+    height: 400px;
+    background: var(--dark);
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.video-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========== AI CHAT ENHANCEMENTS ========== */
+.chat-actions {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--gray-200);
+    background: var(--gray-50);
+}
+
+.chat-action-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.chat-action-btn:hover {
+    background: var(--gray-100);
+}
+
+.voice-recording {
+    background: var(--danger) !important;
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.chat-history {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    margin: 10px 20px;
+    padding: 10px;
+    background: white;
+    display: none;
+}
+
+.chat-history-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.chat-history-item:hover {
+    background: var(--gray-50);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .time {
+        font-size: 4rem;
+    }
+    
+    .interval-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="container">
+            <a href="#home" class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>FlexGen AI</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#dashboard" class="nav-link">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="#calculator" class="nav-link">
+                    <i class="fas fa-calculator"></i> Calculator
+                </a>
+                <a href="#workouts" class="nav-link">
+                    <i class="fas fa-dumbbell"></i> Workouts
+                </a>
+                <a href="#meals" class="nav-link">
+                    <i class="fas fa-utensils"></i> Meals
+                </a>
+                <a href="#ai-chat" class="nav-link">
+                    <i class="fas fa-robot"></i> AI Coach
+                </a>
+            </div>
+            
+            <div class="nav-cta">
+                <button class="btn btn-outline" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate__animated animate__fadeInUp">Transform Your Body with AI-Powered Fitness</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Personalized workout plans, nutrition guidance, and 24/7 AI coaching - everything you need to achieve your fitness goals faster.</p>
+                
+                <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                    <button class="btn btn-primary" id="startTrialBtn">
+                        <i class="fas fa-play-circle"></i> Start Free Trial
+                    </button>
+                    <button class="btn btn-outline" id="watchDemoBtn">
+                        <i class="fas fa-video"></i> Watch Demo
+                    </button>
+                </div>
+                
+                <div class="hero-stats animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">AI Support</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual animate__animated animate__fadeIn animate__delay-1s">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Fitness App Dashboard" style="width: 100%; border-radius: 24px; box-shadow: 0 20px 25px rgba(0,0,0,0.15);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Fitness Dashboard</h2>
+                <p class="section-subtitle">Track your progress, stay motivated, and achieve your goals</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Weekly Progress</h3>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p>Complete your daily goals to increase progress</p>
+                    <button class="btn btn-primary" style="margin-top: 20px; width: 100%;" onclick="logWorkout()">
+                        <i class="fas fa-plus"></i> Log Today's Workout
+                    </button>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Current Weight</h3>
+                        <span id="currentWeight">70 kg</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <p>Goal: 65 kg | Lost: 5 kg</p>
+                    <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="updateWeight()">
+                        <i class="fas fa-edit"></i> Update Weight
+                    </button>
+                </div>
+
+                <div class="widget" id="activePlanWidget" style="display: none;">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Active Plan</h3>
+                        <span id="planProgress">Day 1</span>
+                    </div>
+                    <p id="activePlanName">No active plan</p>
+                    <button class="btn btn-primary" style="margin-top: 20px; width: 100%;" onclick="viewPlanDetails()">
+                        <i class="fas fa-eye"></i> View Plan Details
+                    </button>
+                </div>
+
+                <div class="widget" id="activeMealWidget" style="display: none;">
+                    <div class="widget-header">
+                        <h3 class="widget-title">Active Meal Plan</h3>
+                    </div>
+                    <p id="activeMealName">No active meal plan</p>
+                    <button class="btn btn-outline" style="margin-top: 20px; width: 100%;" onclick="viewMealDetails()">
+                        <i class="fas fa-utensils"></i> View Meal Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calorie Calculator -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Calorie Burn Calculator</h2>
+                <p class="section-subtitle">Calculate how many calories you burn during workouts</p>
+            </div>
+            
+            <div class="calculator-container">
+                <form id="calorieForm">
+                    <div class="calculator-grid">
+                        <div class="form-group">
+                            <label for="activity">Activity Type</label>
+                            <select id="activity" class="form-control" required>
+                                <option value="">Select Activity</option>
+                                <option value="running">Running</option>
+                                <option value="cycling">Cycling</option>
+                                <option value="swimming">Swimming</option>
+                                <option value="weightlifting">Weight Lifting</option>
+                                <option value="yoga">Yoga</option>
+                                <option value="walking">Walking</option>
+                                <option value="hiit">HIIT Training</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="duration">Duration (minutes)</label>
+                            <input type="number" id="duration" class="form-control" min="1" max="300" placeholder="e.g., 45" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weight">Your Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" min="30" max="200" placeholder="e.g., 70" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="intensity">Intensity Level</label>
+                            <select id="intensity" class="form-control" required>
+                                <option value="light">Light</option>
+                                <option value="moderate" selected>Moderate</option>
+                                <option value="vigorous">Vigorous</option>
+                                <option value="very_high">Very High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 30px;">
+                        <i class="fas fa-calculator"></i> Calculate Calories Burned
+                    </button>
+                </form>
+                
+                <div class="calculator-result" id="calculatorResult">
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 10px;">Calories Burned</h3>
+                    <div class="result-value" id="resultValue">0</div>
+                    <p style="text-align: center; color: var(--gray-700);" id="resultDetails"></p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md);">
+                        <small><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> To lose 0.5kg per week, aim for a 500-calorie daily deficit through diet and exercise.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workout Plans -->
+    <section id="workouts" class="workout-plans-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Workout Programs</h2>
+                <p class="section-subtitle">Choose from science-backed programs designed by fitness experts</p>
+            </div>
+            
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3 class="plan-title">Fat Loss Accelerator</h3>
+                        <p>8-Week Program</p>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> HIIT & Cardio Focus</li>
+                            <li><i class="fas fa-check"></i> 5 Weekly Workouts</li>
+                            <li><i class="fas fa-check"></i> Nutrition Meal Plan</li>
+                            <li><i class="fas fa-check"></i> Progress Tracking</li>
+                            <li><i class="fas fa-check"></i> AI Coach Support</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="startProgram('Fat Loss Accelerator', 'fat-loss')">
+                            <i class="fas fa-play"></i> Start Program
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 class="plan-title">Muscle Building Pro</h3>
+                        <p>12-Week Program</p>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Hypertrophy Focus</li>
+                            <li><i class="fas fa-check"></i> 6 Weekly Workouts</li>
+                            <li><i class="fas fa-check"></i> Progressive Overload</li>
+                            <li><i class="fas fa-check"></i> Advanced Techniques</li>
+                            <li><i class="fas fa-check"></i> Form Optimization</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="startProgram('Muscle Building Pro', 'muscle-building')">
+                            <i class="fas fa-play"></i> Start Program
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <div class="plan-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="plan-title">Strength Foundation</h3>
+                        <p>10-Week Program</p>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Strength Focus</li>
+                            <li><i class="fas fa-check"></i> 4 Weekly Workouts</li>
+                            <li><i class="fas fa-check"></i> Compound Movements</li>
+                            <li><i class="fas fa-check"></i> Recovery Emphasis</li>
+                            <li><i class="fas fa-check"></i> Mobility Work</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="startProgram('Strength Foundation', 'strength')">
+                            <i class="fas fa-play"></i> Start Program
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan Details Section -->
+    <section id="plan-details" class="plan-details-section">
+        <div class="container">
+            <div class="plan-details-content">
+                <div class="section-header">
+                    <h2 class="section-title" id="planDetailsTitle">Workout Program Details</h2>
+                    <p class="section-subtitle" id="planDetailsSubtitle">Complete workout schedule and exercises</p>
+                </div>
+                
+                <div id="planScheduleContent">
+                    <!-- Plan schedule will be loaded here -->
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 30px; width: 100%;" onclick="closePlanDetails()">
+                    <i class="fas fa-arrow-left"></i> Back to Plans
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Plans -->
+    <section id="meals" class="meal-plans-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">AI-Generated Meal Plans</h2>
+                <p class="section-subtitle">Personalized nutrition plans based on your goals and dietary preferences</p>
+            </div>
+            
+            <div class="meal-grid">
+                <div class="meal-card">
+                    <div class="meal-image">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">Muscle Building Meal Plan</h3>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-value">220g</div>
+                                <div class="macro-label">Protein</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">350g</div>
+                                <div class="macro-label">Carbs</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">80g</div>
+                                <div class="macro-label">Fats</div>
+                            </div>
+                        </div>
+                        <p>Designed for maximum muscle growth with optimal nutrient timing. High protein, moderate carbs, healthy fats.</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="selectMealPlan('Muscle Building Meal Plan', 'muscle')">
+                            <i class="fas fa-utensils"></i> Select This Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-image">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">Fat Loss Nutrition Plan</h3>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-value">180g</div>
+                                <div class="macro-label">Protein</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">200g</div>
+                                <div class="macro-label">Carbs</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">60g</div>
+                                <div class="macro-label">Fats</div>
+                            </div>
+                        </div>
+                        <p>Calorie-controlled plan with metabolic boosting foods. High protein, low carbs, moderate fats for fat loss.</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="selectMealPlan('Fat Loss Nutrition Plan', 'fat-loss')">
+                            <i class="fas fa-utensils"></i> Select This Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="meal-card">
+                    <div class="meal-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="meal-content">
+                        <h3 class="meal-title">Plant-Based Performance</h3>
+                        <div class="meal-macros">
+                            <div class="macro-item">
+                                <div class="macro-value">150g</div>
+                                <div class="macro-label">Protein</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">400g</div>
+                                <div class="macro-label">Carbs</div>
+                            </div>
+                            <div class="macro-item">
+                                <div class="macro-value">70g</div>
+                                <div class="macro-label">Fats</div>
+                            </div>
+                        </div>
+                        <p>Complete vegan nutrition for optimal performance. Plant-based protein sources, complex carbs, healthy fats.</p>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="selectMealPlan('Plant-Based Performance', 'plant-based')">
+                            <i class="fas fa-utensils"></i> Select This Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="timer" class="timer-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Workout Timer</h2>
+            <p class="section-subtitle">Interval timer for your workouts</p>
+        </div>
+        
+        <div class="timer-container">
+            <div class="timer-display">
+                <div class="time" id="timerDisplay">25:00</div>
+                <div class="timer-status" id="timerStatus">Ready</div>
+            </div>
+            
+            <div class="timer-controls">
+                <button class="btn timer-btn" id="startTimer">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button class="btn timer-btn" id="pauseTimer" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button class="btn timer-btn" id="resetTimer">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+            
+            <div class="timer-presets">
+                <button class="preset-btn" data-minutes="5">5 Min</button>
+                <button class="preset-btn" data-minutes="10">10 Min</button>
+                <button class="preset-btn" data-minutes="15">15 Min</button>
+                <button class="preset-btn" data-minutes="25">25 Min</button>
+                <button class="preset-btn" data-minutes="30">30 Min</button>
+                <button class="preset-btn" data-minutes="45">45 Min</button>
+            </div>
+            
+            <div class="interval-timer" id="intervalTimer" style="display: none;">
+                <h3>Interval Training</h3>
+                <div class="interval-controls">
+                    <div class="form-group">
+                        <label>Work Time (seconds)</label>
+                        <input type="number" id="workTime" value="30" min="10" max="300">
+                    </div>
+                    <div class="form-group">
+                        <label>Rest Time (seconds)</label>
+                        <input type="number" id="restTime" value="15" min="5" max="180">
+                    </div>
+                    <div class="form-group">
+                        <label>Rounds</label>
+                        <input type="number" id="rounds" value="5" min="1" max="20">
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="startInterval">Start Interval</button>
+            </div>
+            
+            <button class="btn btn-outline" id="toggleInterval" style="margin-top: 20px;">
+                <i class="fas fa-exchange-alt"></i> Switch to Interval Timer
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Add this after the timer section -->
+<section id="video-library" class="video-library-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Exercise Video Library</h2>
+            <p class="section-subtitle">Learn proper form with video demonstrations</p>
+        </div>
+        
+        <div class="video-filter">
+            <button class="filter-btn active" data-filter="all">All Exercises</button>
+            <button class="filter-btn" data-filter="chest">Chest</button>
+            <button class="filter-btn" data-filter="back">Back</button>
+            <button class="filter-btn" data-filter="legs">Legs</button>
+            <button class="filter-btn" data-filter="shoulders">Shoulders</button>
+            <button class="filter-btn" data-filter="core">Core</button>
+            <button class="filter-btn" data-filter="cardio">Cardio</button>
+        </div>
+        
+        <div class="video-grid" id="videoGrid">
+            <!-- Videos will be loaded here -->
+        </div>
+    </div>
+</section>
+
+<!-- Video Modal -->
+<div class="modal" id="videoModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="videoTitle">Exercise Video</h2>
+            <button class="close-modal" onclick="closeModal('videoModal')">&times;</button>
+        </div>
+        <div class="video-player" id="videoPlayer">
+            <!-- Video will be loaded here -->
+        </div>
+        <div class="video-info" id="videoInfo">
+            <!-- Video info will be loaded here -->
+        </div>
+    </div>
+</div>
+
+    <!-- AI Chat -->
+    <section id="ai-chat" class="ai-chat-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your AI Fitness Coach</h2>
+                <p class="section-subtitle">Get instant personalized guidance from our AI coach</p>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h3>FlexGen AI Coach</h3>
+                        <p>Always online to help you</p>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        👋 Hello! I'm your FlexGen AI Fitness Coach. I can help you with:
+                        <br><br>
+                        💪 <strong>Personalized workout plans</strong><br>
+                        🥗 <strong>Nutrition & diet advice</strong><br>
+                        🏋️‍♂️ <strong>Exercise form guidance</strong><br>
+                        📊 <strong>Progress tracking</strong><br>
+                        🎯 <strong>Goal setting & motivation</strong>
+                        <br><br>
+                        What fitness goals are you working on today?
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Ask about workouts, nutrition, or fitness advice...">
+                    <button class="btn btn-primary" id="sendMessage">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Login to FlexGen AI</h2>
+                <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                </div>
+               <div class="form-group">
+    <label for="apiKeyInput">
+        <i class="fas fa-key"></i> OpenRouter API Key
+    </label>
+    <input type="password" id="apiKeyInput" class="form-control" 
+           placeholder="Enter your OpenRouter API key" 
+           value="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">
+    <small style="color: var(--gray-700);">
+        Required for AI features. Get free credits at 
+        <a href="https://openrouter.ai/" target="_blank" style="color: var(--primary);">
+            OpenRouter.ai
+        </a>
+    </small>
+</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe" style="margin: 0;">Remember me</label>
+                    </div>
+                    <a href="#" style="color: var(--primary); text-decoration: none;">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: var(--gray-700);">
+                Don't have an account? 
+                <a href="#" onclick="switchToSignup()" style="color: var(--primary); text-decoration: none; font-weight: 500;">Sign up now</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Your Account</h2>
+                <button class="close-modal" onclick="closeModal('signupModal')">&times;</button>
+            </div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Create Password</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a password (min. 8 characters)" required minlength="8">
+                </div>
+                <div class="form-group">
+                    <label for="signupGoal">Fitness Goal</label>
+                    <select id="signupGoal" class="form-control" required>
+                        <option value="">Select your primary goal</option>
+                        <option value="weight_loss">Weight Loss</option>
+                        <option value="muscle_gain">Muscle Building</option>
+                        <option value="strength">Strength Training</option>
+                        <option value="general">General Fitness</option>
+                    </select>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                    <input type="checkbox" id="acceptTerms" required>
+                    <label for="acceptTerms">I agree to the Terms & Conditions</label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: var(--gray-700);">
+                Already have an account? 
+                <a href="#" onclick="switchToLogin()" style="color: var(--primary); text-decoration: none; font-weight: 500;">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Demo Video Modal -->
+    <div class="modal demo-modal" id="demoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">FlexGen AI Demo</h2>
+                <button class="close-modal" onclick="closeModal('demoModal')">&times;</button>
+            </div>
+            <div class="demo-video">
+                <i class="fas fa-play-circle"></i>
+            </div>
+            <h3 style="margin-bottom: 10px;">See FlexGen AI in Action</h3>
+            <p style="color: var(--gray-700); margin-bottom: 20px;">Watch how our AI-powered platform creates personalized workout plans, tracks your progress, and provides real-time coaching.</p>
+            <button class="btn btn-primary" style="width: 100%;" onclick="startFreeTrial()">
+                <i class="fas fa-rocket"></i> Start Free Trial After Demo
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>FlexGen AI</h3>
+                    <p>The future of fitness, powered by artificial intelligence.</p>
+                    <div style="display: flex; gap: 16px; margin-top: 20px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#calculator">Calorie Calculator</a></li>
+                        <li><a href="#workouts">Workout Plans</a></li>
+                        <li><a href="#meals">Meal Plans</a></li>
+                        <li><a href="#ai-chat">AI Coach</a></li>
+                        <li><a href="#dashboard">Progress Tracking</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Workout Library</a></li>
+                        <li><a href="#">Nutrition Guide</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlexGen AI. All rights reserved.</p>
+            </div>
+        </div>
+        <div id="debugPanel" style="display: none; position: fixed; bottom: 10px; right: 10px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 9999;">
+    <h4>AI Debug Info</h4>
+    <div id="debugInfo"></div>
+    <button onclick="document.getElementById('debugPanel').style.display='none'" style="margin-top: 10px;">Close</button>
+</div>
+
+
+    </footer>
+
+    <script>
+// ========== TIMER - WORKING FIX ==========
+let timerInterval = null;
+let timeLeft = 25 * 60; // 25 minutes in seconds
+let isTimerRunning = false;
+let isIntervalMode = false;
+let intervalRounds = 0;
+let currentRound = 0;
+let isWorkTime = true;
+
+function initializeTimer() {
+    console.log("⏱️ Initializing timer...");
+    
+    // Initial display
+    updateTimerDisplay();
+    
+    // Timer control buttons
+    document.getElementById('startTimer').addEventListener('click', startTimer);
+    document.getElementById('pauseTimer').addEventListener('click', pauseTimer);
+    document.getElementById('resetTimer').addEventListener('click', resetTimer);
+    
+    // FIX: Preset buttons - THIS IS THE KEY FIX
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log("🕒 Preset clicked:", this.textContent);
+            
+            const minutes = parseInt(this.getAttribute('data-minutes'));
+            console.log("Setting timer to:", minutes, "minutes");
+            
+            if (!isNaN(minutes) && minutes > 0) {
+                // Stop any running timer
+                if (isTimerRunning) {
+                    pauseTimer();
+                }
+                
+                // Set new time
+                timeLeft = minutes * 60;
+                
+                // Update display immediately
+                updateTimerDisplay();
+                
+                // Update status
+                document.getElementById('timerStatus').textContent = 'Ready';
+                
+                // Visual feedback
+                const timerDisplay = document.getElementById('timerDisplay');
+                timerDisplay.style.transform = 'scale(1.1)';
+                timerDisplay.style.color = 'var(--accent)';
+                
+                setTimeout(() => {
+                    timerDisplay.style.transform = '';
+                    timerDisplay.style.color = '';
+                }, 300);
+                
+                // Show notification
+                showNotification(`Timer set to ${minutes} minutes`, 'success');
+                
+                console.log("Timer updated to:", timeLeft, "seconds");
+            }
+        });
+    });
+    
+    // Interval mode toggle
+    document.getElementById('toggleInterval').addEventListener('click', toggleIntervalMode);
+    document.getElementById('startInterval').addEventListener('click', startIntervalTimer);
+    
+    // Interval input updates
+    document.getElementById('workTime').addEventListener('input', updateIntervalValues);
+    document.getElementById('restTime').addEventListener('input', updateIntervalValues);
+    document.getElementById('rounds').addEventListener('input', updateIntervalValues);
+    
+    console.log("✅ Timer initialized with presets");
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const display = document.getElementById('timerDisplay');
+    
+    if (display) {
+        display.textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+}
+
+function startTimer() {
+    if (isTimerRunning) return;
+    
+    isTimerRunning = true;
+    
+    const startBtn = document.getElementById('startTimer');
+    const pauseBtn = document.getElementById('pauseTimer');
+    
+    if (startBtn) startBtn.disabled = true;
+    if (pauseBtn) pauseBtn.disabled = false;
+    
+    const statusElement = document.getElementById('timerStatus');
+    if (statusElement) {
+        statusElement.textContent = isIntervalMode ? 
+            `Round ${currentRound + 1}/${intervalRounds} - ${isWorkTime ? 'Work' : 'Rest'}` : 
+            'Running';
+    }
+    
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        // Play sound at specific intervals
+        if ([10, 5, 3, 2, 1].includes(timeLeft)) {
+            playTimerSound();
+        }
+        
+        if (timeLeft <= 0) {
+            completeTimer();
+        }
+    }, 1000);
+    
+    showNotification('Timer started!', 'success');
+}
+
+function pauseTimer() {
+    if (!isTimerRunning) return;
+    
+    isTimerRunning = false;
+    clearInterval(timerInterval);
+    
+    const startBtn = document.getElementById('startTimer');
+    const pauseBtn = document.getElementById('pauseTimer');
+    
+    if (startBtn) startBtn.disabled = false;
+    if (pauseBtn) pauseBtn.disabled = true;
+    
+    const statusElement = document.getElementById('timerStatus');
+    if (statusElement) statusElement.textContent = 'Paused';
+    
+    showNotification('Timer paused', 'warning');
+}
+
+function resetTimer() {
+    pauseTimer();
+    
+    if (isIntervalMode) {
+        const workTime = parseInt(document.getElementById('workTime').value) || 30;
+        timeLeft = workTime;
+        currentRound = 0;
+        intervalRounds = parseInt(document.getElementById('rounds').value) || 5;
+        isWorkTime = true;
+    } 
+}
+function updateIntervalValues() {
+    // This function updates the timer when interval values change
+    if (isIntervalMode && !isTimerRunning) {
+        const workTime = parseInt(document.getElementById('workTime').value) || 30;
+        timeLeft = workTime;
+        updateTimerDisplay();
+    }
+}
+    
+    updateTimerDisplay();
+    
+ document.getElementById('startTimer').disabled = false;
+    document.getElementById('pauseTimer').disabled = true;
+    document.getElementById('timerStatus').textContent = 'Ready';
+
+function completeTimer() {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    
+    playCompleteSound();
+    
+    if (isIntervalMode && currentRound < intervalRounds - 1) {
+        if (isWorkTime) {
+            // Switch to rest time
+            isWorkTime = false;
+            const restTime = parseInt(document.getElementById('restTime').value) || 15;
+            timeLeft = restTime;
+            
+            const statusElement = document.getElementById('timerStatus');
+            if (statusElement) {
+                statusElement.textContent = `Round ${currentRound + 1}/${intervalRounds} - Rest`;
+            }
+            
+            showNotification(`Round ${currentRound + 1} complete! Rest time started.`, 'success');
+            startTimer();
+        } else {
+            // Complete rest, start next work round
+            isWorkTime = true;
+            currentRound++;
+            const workTime = parseInt(document.getElementById('workTime').value) || 30;
+            timeLeft = workTime;
+            
+            const statusElement = document.getElementById('timerStatus');
+            if (statusElement) {
+                statusElement.textContent = `Round ${currentRound + 1}/${intervalRounds} - Work`;
+            }
+            
+            showNotification(`Starting round ${currentRound + 1} of ${intervalRounds}`, 'success');
+            startTimer();
+        }
+    } else {
+        // Timer complete
+        if (isIntervalMode) {
+            showNotification('🎉 Interval training completed! Great job!', 'success');
+        } else {
+            showNotification('⏰ Time\'s up! Take a break.', 'success');
+        }
+        
+        const statusElement = document.getElementById('timerStatus');
+        if (statusElement) statusElement.textContent = 'Complete!';
+        
+        const startBtn = document.getElementById('startTimer');
+        const pauseBtn = document.getElementById('pauseTimer');
+        
+        if (startBtn) startBtn.disabled = false;
+        if (pauseBtn) pauseBtn.disabled = true;
+        
+        // Flash animation
+        const display = document.getElementById('timerDisplay');
+        if (display) {
+            display.style.color = '#10b981';
+            display.style.transition = 'color 0.5s';
+            setTimeout(() => {
+                display.style.color = '';
+            }, 2000);
+        }
+    }
+}
+
+function toggleIntervalMode() {
+    isIntervalMode = !isIntervalMode;
+    const intervalTimer = document.getElementById('intervalTimer');
+    const toggleBtn = document.getElementById('toggleInterval');
+    
+    if (isIntervalMode) {
+        intervalTimer.style.display = 'block';
+        toggleBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> Switch to Regular Timer';
+        resetTimer();
+    } else {
+        intervalTimer.style.display = 'none';
+        toggleBtn.innerHTML = '<i class="fas fa-exchange-alt"></i> Switch to Interval Timer';
+        resetTimer();
+    }
+    
+    showNotification(`Switched to ${isIntervalMode ? 'Interval' : 'Regular'} Timer`, 'info');
+}
+
+function startIntervalTimer() {
+    if (!isIntervalMode) return;
+    
+    const workTime = parseInt(document.getElementById('workTime').value) || 30;
+    const restTime = parseInt(document.getElementById('restTime').value) || 15;
+    const rounds = parseInt(document.getElementById('rounds').value) || 5;
+    
+    if (workTime < 10 || restTime < 5 || rounds < 1) {
+        showNotification('Please set valid interval values', 'error');
+        return;
+    }
+    
+    intervalRounds = rounds;
+    currentRound = 0;
+    isWorkTime = true;
+    timeLeft = workTime;
+    
+    const statusElement = document.getElementById('timerStatus');
+    if (statusElement) {
+        statusElement.textContent = `Round 1/${intervalRounds} - Work`;
+    }
+    
+    showNotification(`Starting ${rounds} rounds of ${workTime}s work / ${restTime}s rest`, 'success');
+    startTimer();
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const display = document.getElementById('timerDisplay');
+    
+    if (display) {
+        display.textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+}
+
+function playTimerSound() {
+    // Simple beep using Web Audio API
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    } catch (e) {
+        console.log("Audio not supported");
+    }
+}
+
+function playCompleteSound() {
+    // Two-tone completion sound
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.setValueAtTime(1200, audioContext.currentTime + 0.1);
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.2);
+        
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.4);
+    } catch (e) {
+        console.log("Completion sound failed");
+    }
+}
+
+// ========== VIDEO LIBRARY - WORKING FIX ==========
+const exerciseVideos = [
+    {
+        id: 1,
+        title: "Perfect Push-up Form",
+        category: "chest",
+        description: "Learn proper push-up technique for maximum chest engagement",
+        duration: "2:30",
+        youtubeId: "IODxDxX7oi4",
+        difficulty: "Beginner",
+        equipment: "None",
+        muscles: ["Chest", "Triceps", "Shoulders"]
+    },
+    {
+        id: 2,
+        title: "Barbell Squat Tutorial",
+        category: "legs",
+        description: "Master the king of all exercises with perfect form",
+        duration: "6:15",
+        youtubeId: "ultWZbUMPL8",
+        difficulty: "Intermediate",
+        equipment: "Barbell",
+        muscles: ["Quads", "Glutes", "Hamstrings"]
+    },
+    {
+        id: 3,
+        title: "Deadlift Fundamentals",
+        category: "back",
+        description: "How to deadlift safely with proper back positioning",
+        duration: "5:45",
+        youtubeId: "op9kVnSso6Q",
+        difficulty: "Intermediate",
+        equipment: "Barbell",
+        muscles: ["Back", "Glutes", "Hamstrings"]
+    },
+    {
+        id: 4,
+        title: "Shoulder Press Mastery",
+        category: "shoulders",
+        description: "Build strong shoulders with perfect pressing form",
+        duration: "4:20",
+        youtubeId: "2yjwXTZQDDI",
+        difficulty: "Beginner",
+        equipment: "Dumbbells",
+        muscles: ["Shoulders", "Triceps"]
+    },
+    {
+        id: 5,
+        title: "Plank Variations Guide",
+        category: "core",
+        description: "10 different plank exercises for core strength",
+        duration: "8:10",
+        youtubeId: "ASdvN_XEl_c",
+        difficulty: "Beginner",
+        equipment: "None",
+        muscles: ["Abs", "Core", "Lower Back"]
+    },
+    {
+        id: 6,
+        title: "Jump Rope Cardio",
+        category: "cardio",
+        description: "Jump rope techniques for maximum fat burning",
+        duration: "9:45",
+        youtubeId: "1BZM2Vre5oc",
+        difficulty: "Beginner",
+        equipment: "Jump Rope",
+        muscles: ["Full Body", "Cardio"]
+    },
+    {
+        id: 7,
+        title: "Bench Press Guide",
+        category: "chest",
+        description: "Proper bench press form and safety tips",
+        duration: "7:30",
+        youtubeId: "vcBig73ojpE",
+        difficulty: "Intermediate",
+        equipment: "Bench, Barbell",
+        muscles: ["Chest", "Triceps", "Shoulders"]
+    },
+    {
+        id: 8,
+        title: "Pull-up Progression",
+        category: "back",
+        description: "From zero to your first pull-up",
+        duration: "10:00",
+        youtubeId: "eGo4IYlbE5g",
+        difficulty: "All Levels",
+        equipment: "Pull-up Bar",
+        muscles: ["Back", "Biceps", "Forearms"]
+    }
+];
+
+function initializeVideoLibrary() {
+    console.log("🎬 Initializing video library...");
+    
+    // Load videos initially
+    renderVideos('all');
+    
+    // Filter buttons event listeners
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log("Filter clicked:", this.dataset.filter);
+            
+            // Remove active class from all buttons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Render videos with selected filter
+            renderVideos(this.dataset.filter);
+        });
+    });
+    
+    console.log("✅ Video library initialized");
+}
+
+function renderVideos(filter) {
+    const videoGrid = document.getElementById('videoGrid');
+    if (!videoGrid) {
+        console.error("❌ videoGrid element not found!");
+        return;
+    }
+    
+    videoGrid.innerHTML = '';
+    
+    console.log("Rendering videos with filter:", filter);
+    
+    const filteredVideos = filter === 'all' 
+        ? exerciseVideos 
+        : exerciseVideos.filter(video => video.category === filter);
+    
+    console.log("Filtered videos:", filteredVideos.length);
+    
+    filteredVideos.forEach(video => {
+        const videoCard = document.createElement('div');
+        videoCard.className = 'video-card';
+        videoCard.innerHTML = `
+            <div class="video-thumbnail" data-duration="${video.duration}">
+                <i class="fas fa-play-circle"></i>
+            </div>
+            <div class="video-info">
+                <h3>${video.title}</h3>
+                <p>${video.description}</p>
+                <div class="video-tags">
+                    <span class="video-tag">${video.difficulty}</span>
+                    <span class="video-tag">${video.category.toUpperCase()}</span>
+                    <span class="video-tag">${video.duration}</span>
+                </div>
+            </div>
+        `;
+        
+        videoCard.addEventListener('click', () => openVideo(video));
+        videoGrid.appendChild(videoCard);
+    });
+}
+
+function openVideo(video) {
+    console.log("Opening video:", video.title);
+    
+    // Set video title
+    document.getElementById('videoTitle').textContent = video.title;
+    
+    // Create video player
+    const videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.innerHTML = `
+        <iframe 
+            src="https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0" 
+            title="${video.title}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            style="width: 100%; height: 100%;">
+        </iframe>
+    `;
+    
+    // Set video info
+    const videoInfo = document.getElementById('videoInfo');
+    videoInfo.innerHTML = `
+        <h3>Exercise Details</h3>
+        <p><strong>Difficulty:</strong> ${video.difficulty}</p>
+        <p><strong>Equipment:</strong> ${video.equipment}</p>
+        <p><strong>Primary Muscles:</strong> ${video.muscles.join(', ')}</p>
+        <p><strong>Duration:</strong> ${video.duration}</p>
+        <p>${video.description}</p>
+    `;
+    
+    // Open modal
+    openModal('videoModal');
+    
+    // Play video automatically
+    setTimeout(() => {
+        const iframe = videoPlayer.querySelector('iframe');
+        if (iframe) {
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        }
+    }, 500);
+}
+
+// Video modal close
+document.addEventListener('DOMContentLoaded', function() {
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal('videoModal');
+            }
+        });
+    }
+});
+// ========== AI CHAT ENHANCEMENTS ==========
+let chatHistory = JSON.parse(localStorage.getItem('flexgen_chat_history')) || [];
+let isRecording = false;
+let mediaRecorder = null;
+let audioChunks = [];
+
+function initializeChatEnhancements() {
+    // Load chat history
+    renderChatHistory();
+    
+    // Voice recording button
+    const voiceBtn = document.createElement('button');
+    voiceBtn.className = 'chat-action-btn';
+    voiceBtn.id = 'voiceRecordBtn';
+    voiceBtn.innerHTML = '<i class="fas fa-microphone"></i> Voice';
+    voiceBtn.addEventListener('click', toggleVoiceRecording);
+    
+    // History button
+    const historyBtn = document.createElement('button');
+    historyBtn.className = 'chat-action-btn';
+    historyBtn.id = 'historyBtn';
+    historyBtn.innerHTML = '<i class="fas fa-history"></i> History';
+    historyBtn.addEventListener('click', toggleChatHistory);
+    
+    // Add buttons to chat container
+    const chatContainer = document.querySelector('.chat-container');
+    const chatHeader = document.querySelector('.chat-header');
+    chatHeader.parentNode.insertBefore(createChatActions(), chatHeader.nextSibling);
+    
+    // Auto-save chat messages
+    setInterval(saveChatHistory, 5000);
+}
+
+function createChatActions() {
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'chat-actions';
+    actionsDiv.innerHTML = `
+        <button class="chat-action-btn" id="voiceRecordBtn">
+            <i class="fas fa-microphone"></i> Voice
+        </button>
+        <button class="chat-action-btn" id="historyBtn">
+            <i class="fas fa-history"></i> History
+        </button>
+        <button class="chat-action-btn" id="clearChatBtn">
+            <i class="fas fa-trash"></i> Clear
+        </button>
+        <button class="chat-action-btn" id="exportChatBtn">
+            <i class="fas fa-download"></i> Export
+        </button>
+    `;
+    
+    actionsDiv.querySelector('#voiceRecordBtn').addEventListener('click', toggleVoiceRecording);
+    actionsDiv.querySelector('#historyBtn').addEventListener('click', toggleChatHistory);
+    actionsDiv.querySelector('#clearChatBtn').addEventListener('click', clearChatHistory);
+    actionsDiv.querySelector('#exportChatBtn').addEventListener('click', exportChatHistory);
+    
+    return actionsDiv;
+}
+
+async function toggleVoiceRecording() {
+    if (!isRecording) {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+            
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+            
+            mediaRecorder.addEventListener('stop', async () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                // Convert to text using Web Speech API
+                await convertSpeechToText(audioBlob);
+            });
+            
+            mediaRecorder.start();
+            isRecording = true;
+            document.getElementById('voiceRecordBtn').classList.add('voice-recording');
+            document.getElementById('voiceRecordBtn').innerHTML = '<i class="fas fa-stop"></i> Stop';
+            
+            showNotification('Recording... Speak now', 'info');
+        } catch (error) {
+            console.error('Voice recording error:', error);
+            showNotification('Microphone access denied', 'error');
+        }
+    } else {
+        mediaRecorder.stop();
+        isRecording = false;
+        document.getElementById('voiceRecordBtn').classList.remove('voice-recording');
+        document.getElementById('voiceRecordBtn').innerHTML = '<i class="fas fa-microphone"></i> Voice';
+    }
+}
+
+async function convertSpeechToText(audioBlob) {
+    // Note: This requires a speech recognition service
+    // For demo, we'll use a simulated response
+    showNotification('Processing speech...', 'info');
+    
+    // Simulate processing
+    setTimeout(() => {
+        const sampleQuestions = [
+            "How do I lose belly fat?",
+            "What's the best workout for beginners?",
+            "How much protein should I eat?",
+            "Can you create a workout plan for me?",
+            "How do I improve my squat form?"
+        ];
+        
+        const randomQuestion = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
+        document.getElementById('chatInput').value = randomQuestion;
+        showNotification('Voice converted to text!', 'success');
+    }, 1500);
+}
+
+function toggleChatHistory() {
+    const historyDiv = document.getElementById('chatHistory') || createHistoryDiv();
+    historyDiv.style.display = historyDiv.style.display === 'none' ? 'block' : 'none';
+}
+
+function createHistoryDiv() {
+    const historyDiv = document.createElement('div');
+    historyDiv.className = 'chat-history';
+    historyDiv.id = 'chatHistory';
+    
+    const chatContainer = document.querySelector('.chat-container');
+    const chatMessages = document.getElementById('chatMessages');
+    chatContainer.insertBefore(historyDiv, chatMessages);
+    
+    return historyDiv;
+}
+
+function renderChatHistory() {
+    const historyDiv = document.getElementById('chatHistory') || createHistoryDiv();
+    
+    if (chatHistory.length === 0) {
+        historyDiv.innerHTML = '<p style="text-align: center; color: var(--gray-700);">No chat history yet</p>';
+        return;
+    }
+    
+    historyDiv.innerHTML = '';
+    chatHistory.forEach((chat, index) => {
+        const historyItem = document.createElement('div');
+        historyItem.className = 'chat-history-item';
+        historyItem.innerHTML = `
+            <strong>${new Date(chat.timestamp).toLocaleDateString()}</strong>
+            <p style="margin: 5px 0; color: var(--gray-700);">${chat.preview}...</p>
+        `;
+        
+        historyItem.addEventListener('click', () => loadChatHistory(index));
+        historyDiv.appendChild(historyItem);
+    });
+}
+
+function saveChatHistory() {
+    const messages = document.querySelectorAll('.message');
+    if (messages.length < 2) return;
+    
+    const lastMessage = messages[messages.length - 1].textContent;
+    const preview = lastMessage.length > 50 ? lastMessage.substring(0, 50) : lastMessage;
+    
+    chatHistory.push({
+        timestamp: new Date().toISOString(),
+        preview: preview,
+        messages: Array.from(messages).map(m => ({
+            text: m.textContent,
+            type: m.classList.contains('user-message') ? 'user' : 'bot'
+        }))
+    });
+    
+    // Keep only last 20 conversations
+    if (chatHistory.length > 20) {
+        chatHistory = chatHistory.slice(-20);
+    }
+    
+    localStorage.setItem('flexgen_chat_history', JSON.stringify(chatHistory));
+}
+
+function loadChatHistory(index) {
+    if (index >= 0 && index < chatHistory.length) {
+        const chat = chatHistory[index];
+        const chatMessages = document.getElementById('chatMessages');
+        chatMessages.innerHTML = '';
+        
+        chat.messages.forEach(msg => {
+            addChatMessage(msg.text, msg.type);
+        });
+        
+        closeChatHistory();
+        showNotification('Chat history loaded', 'success');
+    }
+}
+
+function clearChatHistory() {
+    if (confirm('Clear all chat history?')) {
+        chatHistory = [];
+        localStorage.removeItem('flexgen_chat_history');
+        document.getElementById('chatMessages').innerHTML = `
+            <div class="message bot-message">
+                👋 Hello! I'm your FlexGen AI Fitness Coach. How can I help you today?
+            </div>
+        `;
+        renderChatHistory();
+        showNotification('Chat history cleared', 'success');
+    }
+}
+
+function exportChatHistory() {
+    const dataStr = JSON.stringify(chatHistory, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+    
+    const exportFileDefaultName = `flexgen-chat-history-${new Date().toISOString().split('T')[0]}.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    showNotification('Chat history exported', 'success');
+}
+
+function closeChatHistory() {
+    const historyDiv = document.getElementById('chatHistory');
+    if (historyDiv) {
+        historyDiv.style.display = 'none';
+    }
+}
+        // Global State
+        let currentUser = null;
+        let progress = 0;
+        let currentWeight = 70;
+        let activeWorkoutPlan = null;
+        let activeMealPlan = null;
+        let workoutPlanData = {
+            'fat-loss': {
+                title: 'Fat Loss Accelerator',
+                duration: '8 Weeks',
+                description: 'High-intensity program focused on burning fat and improving cardiovascular health',
+                schedule: [
+                    {
+                        day: 'Day 1: Full Body HIIT',
+                        exercises: 'Warm-up: 5 min • HIIT Circuit: 30 sec work, 30 sec rest (8 exercises) • Cool down: 5 min',
+                        focus: 'Cardio & Fat Burning'
+                    },
+                    {
+                        day: 'Day 2: Strength Training',
+                        exercises: 'Squats: 3x12 • Bench Press: 3x10 • Rows: 3x12 • Shoulder Press: 3x10',
+                        focus: 'Muscle Preservation'
+                    },
+                    {
+                        day: 'Day 3: Active Recovery',
+                        exercises: 'Walking: 30 min • Yoga: 20 min • Foam Rolling: 10 min',
+                        focus: 'Recovery & Mobility'
+                    },
+                    {
+                        day: 'Day 4: Lower Body Focus',
+                        exercises: 'Deadlifts: 3x8 • Lunges: 3x12 each leg • Leg Press: 3x10 • Calf Raises: 3x15',
+                        focus: 'Lower Body Strength'
+                    },
+                    {
+                        day: 'Day 5: Cardio & Core',
+                        exercises: 'Running: 30 min • Planks: 3x60 sec • Russian Twists: 3x20 • Leg Raises: 3x15',
+                        focus: 'Endurance & Core'
+                    }
+                ]
+            },
+            'muscle-building': {
+                title: 'Muscle Building Pro',
+                duration: '12 Weeks',
+                description: 'Hypertrophy-focused program for maximum muscle growth and strength',
+                schedule: [
+                    {
+                        day: 'Day 1: Chest & Triceps',
+                        exercises: 'Bench Press: 4x8 • Incline Press: 3x10 • Chest Flyes: 3x12 • Tricep Pushdowns: 3x12 • Skull Crushers: 3x10',
+                        focus: 'Upper Body Push'
+                    },
+                    {
+                        day: 'Day 2: Back & Biceps',
+                        exercises: 'Deadlifts: 4x6 • Pull-ups: 3x8 • Rows: 3x10 • Bicep Curls: 3x12 • Hammer Curls: 3x12',
+                        focus: 'Upper Body Pull'
+                    },
+                    {
+                        day: 'Day 3: Legs',
+                        exercises: 'Squats: 4x8 • Leg Press: 3x10 • Lunges: 3x12 each • Leg Curls: 3x12 • Calf Raises: 4x15',
+                        focus: 'Lower Body'
+                    },
+                    {
+                        day: 'Day 4: Shoulders & Arms',
+                        exercises: 'Shoulder Press: 4x8 • Lateral Raises: 3x12 • Rear Delt Flyes: 3x12 • Bicep/Tricep Supersets',
+                        focus: 'Shoulders & Arms'
+                    },
+                    {
+                        day: 'Day 5: Full Body',
+                        exercises: 'Compound movements with higher reps for muscle endurance and pump',
+                        focus: 'Muscle Endurance'
+                    }
+                ]
+            },
+            'strength': {
+                title: 'Strength Foundation',
+                duration: '10 Weeks',
+                description: 'Focus on building raw strength with compound movements',
+                schedule: [
+                    {
+                        day: 'Day 1: Heavy Squats',
+                        exercises: 'Squats: 5x5 • Leg Press: 3x8 • Leg Extensions: 3x10 • Calf Work',
+                        focus: 'Lower Body Strength'
+                    },
+                    {
+                        day: 'Day 2: Heavy Bench',
+                        exercises: 'Bench Press: 5x5 • Incline Press: 3x8 • Tricep Work • Chest Accessories',
+                        focus: 'Chest Strength'
+                    },
+                    {
+                        day: 'Day 3: Active Recovery',
+                        exercises: 'Mobility Work • Light Cardio • Stretching • Foam Rolling',
+                        focus: 'Recovery'
+                    },
+                    {
+                        day: 'Day 4: Heavy Deadlifts',
+                        exercises: 'Deadlifts: 5x3 • Rows: 3x8 • Pull-ups: 3x5 • Back Accessories',
+                        focus: 'Back Strength'
+                    },
+                    {
+                        day: 'Day 5: Overhead Press',
+                        exercises: 'Shoulder Press: 5x5 • Accessory Work • Arm Work • Core',
+                        focus: 'Shoulder Strength'
+                    }
+                ]
+            }
+        };
+
+        let mealPlanData = {
+            'muscle': {
+                title: 'Muscle Building Meal Plan',
+                dailyCalories: '3000',
+                meals: [
+                    { time: 'Breakfast (7 AM)', food: '4 eggs, 2 slices whole grain toast, 1 avocado, protein shake' },
+                    { time: 'Mid-Morning (10 AM)', food: 'Greek yogurt with berries and almonds' },
+                    { time: 'Lunch (1 PM)', food: '200g chicken breast, 200g rice, mixed vegetables' },
+                    { time: 'Pre-Workout (4 PM)', food: 'Banana, protein bar' },
+                    { time: 'Post-Workout (6 PM)', food: 'Protein shake, 50g oats' },
+                    { time: 'Dinner (8 PM)', food: '250g salmon, sweet potato, broccoli' },
+                    { time: 'Before Bed (10 PM)', food: 'Cottage cheese or casein protein' }
+                ]
+            },
+            'fat-loss': {
+                title: 'Fat Loss Nutrition Plan',
+                dailyCalories: '2000',
+                meals: [
+                    { time: 'Breakfast (7 AM)', food: '3 egg whites, 1 whole egg, spinach, tomato' },
+                    { time: 'Mid-Morning (10 AM)', food: 'Protein shake with water' },
+                    { time: 'Lunch (1 PM)', food: '150g chicken breast, large salad with olive oil' },
+                    { time: 'Afternoon (4 PM)', food: 'Apple with almond butter' },
+                    { time: 'Dinner (7 PM)', food: '200g white fish, 150g quinoa, asparagus' },
+                    { time: 'Evening (9 PM)', food: 'Greek yogurt with cinnamon' }
+                ]
+            },
+            'plant-based': {
+                title: 'Plant-Based Performance',
+                dailyCalories: '2800',
+                meals: [
+                    { time: 'Breakfast (7 AM)', food: 'Oatmeal with plant protein, berries, chia seeds' },
+                    { time: 'Mid-Morning (10 AM)', food: 'Handful of mixed nuts, banana' },
+                    { time: 'Lunch (1 PM)', food: 'Lentil curry with brown rice, side salad' },
+                    { time: 'Afternoon (4 PM)', food: 'Hummus with vegetable sticks' },
+                    { time: 'Dinner (7 PM)', food: 'Tofu stir-fry with quinoa and vegetables' },
+                    { time: 'Evening (9 PM)', food: 'Plant-based protein shake' }
+                ]
+            }
+        };
+const DEEPSEEK_CONFIG = {
+    apiUrl: 'https://openrouter.ai/api/v1/chat/completions',
+    apiKey: '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',
+    model: 'deepseek/deepseek-chat',
+    maxTokens: 500,
+    temperature: 0.7
+};
+async function testAPIConnection() {
+    console.log("🔍 Testing API Connection...");
+    
+    try {
+        const response = await fetch('https://openrouter.ai/api/v1/models', {
+            headers: {
+                'Authorization': `Bearer ${DEEPSEEK_CONFIG.apiKey}`,
+                'HTTP-Referer': 'https://flexgen-ai-fitness.com'
+            }
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            console.log("✅ API Connected! Available models:", data.data.length);
+            return true;
+        } else {
+            console.error("❌ API Connection failed:", response.status);
+            return false;
+        }
+    } catch (error) {
+        console.error("💥 API Test error:", error);
+        return false;
+    }
+}
+
+async function testOpenRouterModels() {
+    try {
+        const response = await fetch('https://openrouter.ai/api/v1/models', {
+            headers: {
+                'Authorization': `Bearer ${DEEPSEEK_CONFIG.apiKey}`,
+                'HTTP-Referer': 'http://localhost'
+            }
+        });
+        
+        const models = await response.json();
+        console.log("Available OpenRouter Models:");
+        models.data.forEach(model => {
+            if (model.id.includes('deepseek') || model.id.includes('free')) {
+                console.log(`- ${model.id} (${model.pricing?.prompt || 'free'})`);
+            }
+        });
+    } catch (error) {
+        console.error("Failed to fetch models:", error);
+    }
+}
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            loadUserData();
+        });
+
+async function initializeApp() {
+    console.log("🚀 Initializing FlexGen AI...");
+    
+    // Initialize progress bars
+    updateProgressBar();
+    
+    // Test API connection
+   const apiConnected = await testAPIConnection();
+    if (apiConnected) {
+        console.log("🌐 API is ready for AI chat!");
+    } else {
+        console.warn("⚠️ API not connected - using local responses");
+        showNotification('AI features may be limited. Using local knowledge base.', 'warning');
+    }
+    
+    // Check if user is logged in
+    const savedUser = localStorage.getItem('flexgen_user');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        updateUIForLoggedInUser();
+    }
+    
+    // Initialize ALL features
+    initializeTimer();
+    initializeVideoLibrary();
+    initializeChatEnhancements();
+    
+    // Load active plans
+    activeWorkoutPlan = localStorage.getItem('active_workout_plan');
+    activeMealPlan = localStorage.getItem('active_meal_plan');
+    
+    if (activeWorkoutPlan) {
+        showActiveWorkoutPlan();
+    }
+    
+    if (activeMealPlan) {
+        showActiveMealPlan();
+    }
+    
+    console.log("✅ FlexGen AI fully initialized!");
+}
+
+        function setupEventListeners() {
+            // Modal buttons
+            document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
+            document.getElementById('signupBtn').addEventListener('click', () => openModal('signupModal'));
+            document.getElementById('startTrialBtn').addEventListener('click', startFreeTrial);
+            document.getElementById('watchDemoBtn').addEventListener('click', () => openModal('demoModal'));
+
+            // Mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+            // Navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Smooth scroll
+                    if (targetId !== '#') {
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            window.scrollTo({
+                                top: targetSection.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    
+                    // Close mobile menu if open
+                    const navLinks = document.querySelector('.nav-links');
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
+                });
+            });
+
+            // Forms
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('signupForm').addEventListener('submit', handleSignup);
+            document.getElementById('calorieForm').addEventListener('submit', calculateCalories);
+
+            // AI Chat
+            document.getElementById('sendMessage').addEventListener('click', sendChatMessage);
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchToSignup() {
+            closeModal('loginModal');
+            openModal('signupModal');
+        }
+
+        function switchToLogin() {
+            closeModal('signupModal');
+            openModal('loginModal');
+        }
+
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '20px';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            }
+        }
+        // Save API key from input
+function saveAPIKey() {
+    const apiKeyInput = document.getElementById('apiKeyInput');
+    if (apiKeyInput && apiKeyInput.value.trim()) {
+        DEEPSEEK_CONFIG.apiKey = apiKeyInput.value.trim();
+        localStorage.setItem('flexgen_api_key', DEEPSEEK_CONFIG.apiKey);
+        showNotification('API key saved successfully!', 'success');
+        return true;
+    }
+    return false;
+}
+
+// Load API key on startup
+function loadAPIKey() {
+    const savedKey = localStorage.getItem('flexgen_api_key');
+    if (savedKey) {
+        DEEPSEEK_CONFIG.apiKey = savedKey;
+        console.log("🔑 API Key loaded from storage");
+    }
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const apiKey = document.getElementById('apiKeyInput')?.value;
+            const apiKeyInput = document.getElementById('apiKeyInput');
+    if (apiKeyInput && apiKeyInput.value.trim()) {
+        saveAPIKey();
+    }
+            
+            // Simple validation
+            if (!email || !password) {
+                showNotification('Please fill in all fields', 'error');
+                return;
+            }
+            
+             if (apiKey) {
+        DEEPSEEK_CONFIG.apiKey = apiKey;
+        localStorage.setItem('flexgen_api_key', apiKey);
+        showNotification('API key saved for AI features', 'success');
+    }
+            // Simulate API call
+            const loginBtn = e.target.querySelector('.btn-primary');
+            const originalText = loginBtn.innerHTML;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            loginBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Create user object
+                currentUser = {
+                    email: email,
+                    name: email.split('@')[0],
+                    joined: new Date().toISOString(),
+                    goal: 'weight_loss',
+                    isTrialActive: true,
+                    trialDays: 14
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('flexgen_user', JSON.stringify(currentUser));
+                
+                // Update UI
+                updateUIForLoggedInUser();
+                
+                // Close modal and show success
+                closeModal('loginModal');
+                showNotification('Successfully logged in! Welcome to FlexGen AI.', 'success');
+                
+                // Reset button
+                loginBtn.innerHTML = originalText;
+                loginBtn.disabled = false;
+            }, 1500);
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const goal = document.getElementById('signupGoal').value;
+            
+            // Validation
+            if (password.length < 8) {
+                showNotification('Password must be at least 8 characters', 'error');
+                return;
+            }
+            
+            const signupBtn = e.target.querySelector('.btn-primary');
+            const originalText = signupBtn.innerHTML;
+            signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+            signupBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Create user object
+                currentUser = {
+                    name: name,
+                    email: email,
+                    goal: goal,
+                    joined: new Date().toISOString(),
+                    progress: 0,
+                    isTrialActive: true,
+                    trialDays: 14
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('flexgen_user', JSON.stringify(currentUser));
+                
+                // Update UI
+                updateUIForLoggedInUser();
+                
+                // Close modal and show success
+                closeModal('signupModal');
+                showNotification('Account created successfully! 14-day free trial activated.', 'success');
+                
+                // Reset button
+                signupBtn.innerHTML = originalText;
+                signupBtn.disabled = false;
+            }, 1500);
+        }
+
+        function updateUIForLoggedInUser() {
+            if (!currentUser) return;
+            
+            // Update navigation
+            const navCta = document.querySelector('.nav-cta');
+            const trialText = currentUser.isTrialActive ? ` (${currentUser.trialDays} days left)` : '';
+            navCta.innerHTML = `
+                <button class="btn btn-outline" style="display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-user"></i> ${currentUser.name}${trialText}
+                </button>
+                <button class="btn btn-primary" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+            
+            // Add logout listener
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('flexgen_user');
+            
+            // Reset UI
+            const navCta = document.querySelector('.nav-cta');
+            navCta.innerHTML = `
+                <button class="btn btn-outline" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            `;
+            
+            // Re-add event listeners
+            document.getElementById('loginBtn').addEventListener('click', () => openModal('loginModal'));
+            document.getElementById('signupBtn').addEventListener('click', () => openModal('signupModal'));
+            
+            showNotification('Logged out successfully.', 'success');
+        }
+
+        function loadUserData() {
+            const savedProgress = localStorage.getItem('flexgen_progress');
+            const savedWeight = localStorage.getItem('flexgen_weight');
+            
+            if (savedProgress) {
+                progress = parseInt(savedProgress);
+                updateProgressBar();
+            }
+            
+            if (savedWeight) {
+                currentWeight = parseInt(savedWeight);
+                document.getElementById('currentWeight').textContent = `${currentWeight} kg`;
+            }
+        }
+
+        function logWorkout() {
+            if (!currentUser) {
+                showNotification('Please login to track workouts', 'warning');
+                openModal('loginModal');
+                return;
+            }
+            
+            progress = Math.min(progress + 15, 100);
+            localStorage.setItem('flexgen_progress', progress);
+            updateProgressBar();
+            
+            showNotification('Workout logged! +15% progress added. Keep up the great work!', 'success');
+        }
+
+        function updateWeight() {
+            if (!currentUser) {
+                showNotification('Please login to update weight', 'warning');
+                openModal('loginModal');
+                return;
+            }
+            
+            const newWeight = prompt('Enter your current weight (kg):', currentWeight);
+            if (newWeight && !isNaN(newWeight)) {
+                currentWeight = parseInt(newWeight);
+                localStorage.setItem('flexgen_weight', currentWeight);
+                document.getElementById('currentWeight').textContent = `${currentWeight} kg`;
+                showNotification('Weight updated successfully!', 'success');
+            }
+        }
+
+        function updateProgressBar() {
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${progress}%`;
+        }
+
+        function calculateCalories(e) {
+            e.preventDefault();
+            
+            const activity = document.getElementById('activity').value;
+            const duration = parseFloat(document.getElementById('duration').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const intensity = document.getElementById('intensity').value;
+            
+            if (!activity) {
+                showNotification('Please select an activity', 'error');
+                return;
+            }
+            
+            if (!duration || duration < 1 || duration > 300) {
+                showNotification('Please enter a valid duration (1-300 minutes)', 'error');
+                return;
+            }
+            
+            if (!weight || weight < 30 || weight > 200) {
+                showNotification('Please enter a valid weight (30-200 kg)', 'error');
+                return;
+            }
+            
+            // Calculate calories based on activity and intensity
+            const metValues = {
+                running: { light: 8, moderate: 10, vigorous: 12, very_high: 14 },
+                cycling: { light: 6, moderate: 8, vigorous: 10, very_high: 12 },
+                swimming: { light: 7, moderate: 9, vigorous: 11, very_high: 13 },
+                weightlifting: { light: 3, moderate: 5, vigorous: 7, very_high: 9 },
+                yoga: { light: 2, moderate: 3, vigorous: 4, very_high: 5 },
+                walking: { light: 3, moderate: 4, vigorous: 5, very_high: 6 },
+                hiit: { light: 8, moderate: 10, vigorous: 12, very_high: 14 }
+            };
+            
+            const met = metValues[activity][intensity];
+            const hours = duration / 60;
+            const calories = Math.round(met * weight * hours);
+            
+            // Display result with animation
+            const resultValue = document.getElementById('resultValue');
+            const resultDetails = document.getElementById('resultDetails');
+            const calculatorResult = document.getElementById('calculatorResult');
+            
+            resultValue.textContent = calories;
+            resultDetails.textContent = `Based on ${duration} minutes of ${activity} at ${intensity} intensity for a ${weight}kg person.`;
+            calculatorResult.style.display = 'block';
+            
+            // Animate number counting
+            animateNumber(resultValue, 0, calories, 1000);
+            
+            // Scroll to result
+            calculatorResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function animateNumber(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function startProgram(programName, programKey) {
+            if (!currentUser) {
+                showNotification('Please login to start a program', 'warning');
+                openModal('loginModal');
+                return;
+            }
+            
+            // Set active workout plan
+            activeWorkoutPlan = programKey;
+            localStorage.setItem('active_workout_plan', programKey);
+            
+            // Show in dashboard
+            showActiveWorkoutPlan();
+            
+            // Show detailed plan
+            showPlanDetails(programKey);
+            
+            showNotification(`🎉 ${programName} started! Check your dashboard for details.`, 'success');
+        }
+
+        function selectMealPlan(planName, planKey) {
+            if (!currentUser) {
+                showNotification('Please login to select a meal plan', 'warning');
+                openModal('loginModal');
+                return;
+            }
+            
+            // Set active meal plan
+            activeMealPlan = planKey;
+            localStorage.setItem('active_meal_plan', planKey);
+            
+            // Show in dashboard
+            showActiveMealPlan();
+            
+            // Show detailed plan in modal
+            showMealDetails(planKey);
+            
+            showNotification(`🥗 ${planName} selected! Check your dashboard for details.`, 'success');
+        }
+
+        function showActiveWorkoutPlan() {
+            if (!activeWorkoutPlan) return;
+            
+            const planData = workoutPlanData[activeWorkoutPlan];
+            const widget = document.getElementById('activePlanWidget');
+            const planName = document.getElementById('activePlanName');
+            const planProgress = document.getElementById('planProgress');
+            
+            planName.textContent = planData.title;
+            planProgress.textContent = 'Day 1 of 56';
+            widget.style.display = 'block';
+        }
+
+        function showActiveMealPlan() {
+            if (!activeMealPlan) return;
+            
+            const planData = mealPlanData[activeMealPlan];
+            const widget = document.getElementById('activeMealWidget');
+            const mealName = document.getElementById('activeMealName');
+            
+            mealName.textContent = `${planData.title} (${planData.dailyCalories} calories/day)`;
+            widget.style.display = 'block';
+        }
+
+        function showPlanDetails(programKey) {
+            const planData = workoutPlanData[programKey];
+            const planDetailsSection = document.getElementById('plan-details');
+            const planTitle = document.getElementById('planDetailsTitle');
+            const planSubtitle = document.getElementById('planDetailsSubtitle');
+            const scheduleContent = document.getElementById('planScheduleContent');
+            
+            // Update titles
+            planTitle.textContent = planData.title;
+            planSubtitle.textContent = `${planData.duration} Program - ${planData.description}`;
+            
+            // Build schedule
+            let scheduleHTML = '<div class="plan-schedule">';
+            planData.schedule.forEach(day => {
+                scheduleHTML += `
+                    <div class="day-card">
+                        <h4>${day.day}</h4>
+                        <p><strong>Exercises:</strong> ${day.exercises}</p>
+                        <p><strong>Focus:</strong> ${day.focus}</p>
+                    </div>
+                `;
+            });
+            scheduleHTML += '</div>';
+            
+            scheduleContent.innerHTML = scheduleHTML;
+            
+            // Show the section and scroll to it
+            planDetailsSection.style.display = 'block';
+            setTimeout(() => {
+                planDetailsSection.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+            
+            // Hide workouts section
+            document.getElementById('workouts').style.display = 'none';
+        }
+
+        function showMealDetails(planKey) {
+            const planData = mealPlanData[planKey];
+            
+            // Create modal for meal details
+            const modalContent = `
+                <div class="modal-header">
+                    <h2 class="modal-title">${planData.title}</h2>
+                    <button class="close-modal" onclick="closeModal('mealDetailsModal')">&times;</button>
+                </div>
+                <div style="margin: 20px 0;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Daily Calories: ${planData.dailyCalories}</h3>
+                    <p style="color: var(--gray-700); margin-bottom: 20px;">Complete daily meal schedule:</p>
+                    
+                    <div style="background: var(--gray-50); border-radius: var(--radius-md); padding: 20px;">
+                        ${planData.meals.map(meal => `
+                            <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--gray-200);">
+                                <strong style="color: var(--primary);">${meal.time}</strong><br>
+                                <span style="color: var(--gray-700);">${meal.food}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="closeModal('mealDetailsModal')">
+                    <i class="fas fa-check"></i> Got it! Let's start
+                </button>
+            `;
+            
+            // Create or update modal
+            let modal = document.getElementById('mealDetailsModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'mealDetailsModal';
+                modal.className = 'modal';
+                modal.innerHTML = `<div class="modal-content">${modalContent}</div>`;
+                document.body.appendChild(modal);
+            } else {
+                modal.querySelector('.modal-content').innerHTML = modalContent;
+            }
+            
+            // Show modal
+            openModal('mealDetailsModal');
+        }
+
+        function closePlanDetails() {
+            // Show workouts section
+            document.getElementById('workouts').style.display = 'block';
+            
+            // Hide plan details
+            document.getElementById('plan-details').style.display = 'none';
+            
+            // Scroll to workouts
+            document.getElementById('workouts').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function viewPlanDetails() {
+            if (activeWorkoutPlan) {
+                showPlanDetails(activeWorkoutPlan);
+            }
+        }
+
+        function viewMealDetails() {
+            if (activeMealPlan) {
+                showMealDetails(activeMealPlan);
+            }
+        }
+
+        function startFreeTrial() {
+            if (!currentUser) {
+                openModal('signupModal');
+                return;
+            }
+            
+            if (currentUser.isTrialActive) {
+                showNotification(`Your free trial is already active! ${currentUser.trialDays} days remaining.`, 'success');
+                return;
+            }
+            
+            // Start trial
+            currentUser.isTrialActive = true;
+            currentUser.trialDays = 14;
+            localStorage.setItem('flexgen_user', JSON.stringify(currentUser));
+            
+            // Update UI
+            updateUIForLoggedInUser();
+            
+            showNotification('🎉 Free trial activated! 14 days of premium features unlocked.', 'success');
+        }
+
+       async function sendChatMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    addChatMessage(message, 'user');
+    input.value = '';
+    
+    // Disable input while processing
+    input.disabled = true;
+    document.getElementById('sendMessage').disabled = true;
+    
+    // Show typing indicator
+    addTypingIndicator();
+    
+    try {
+        // Get AI response
+        const response = await getAIResponse(message);
+        removeTypingIndicator();
+        addChatMessage(response, 'bot');
+    } catch (error) {
+        removeTypingIndicator();
+        addChatMessage("I apologize, but I'm having trouble connecting right now. Please try again in a moment.", 'bot');
+        console.error('Chat error:', error);
+    } finally {
+        // Re-enable input
+        input.disabled = false;
+        document.getElementById('sendMessage').disabled = false;
+        input.focus();
+    }
+}
+
+        function addChatMessage(text, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<i class="fas fa-ellipsis-h"></i> Typing...';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+// Replace your current getAIResponse function with this:
+
+async function getAIResponse(message) {
+    console.log("🤖 AI Chat Request:", message.substring(0, 50));
+    
+    // Test if API key is working first
+    if (!DEEPSEEK_CONFIG.apiKey || DEEPSEEK_CONFIG.apiKey === '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') {
+        console.warn("⚠️ Using default API key - may be rate limited");
+    }
+    
+    try {
+        console.log("🔗 Calling OpenRouter API...");
+        
+        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${DEEPSEEK_CONFIG.apiKey}`,
+                'HTTP-Referer': 'https://flexgen-ai-fitness.com', // Change this to your domain
+                'X-Title': 'FlexGen AI Fitness'
+            },
+            body: JSON.stringify({
+                model: 'deepseek/deepseek-chat', // Ensure correct model
+                messages: [
+                    {
+                        role: 'system',
+                        content: `You are FlexGen AI, an expert fitness coach with 15+ years experience. You provide:
+                        
+1. PERSONALIZED workout plans based on user goals (weight loss, muscle gain, strength, endurance)
+2. NUTRITION guidance including macros, meal timing, and supplementation
+3. EXERCISE FORM correction and injury prevention advice
+4. PROGRESS TRACKING strategies and motivation
+5. EVIDENCE-BASED fitness science explanations
+
+Be SPECIFIC, ENCOURAGING, and ACTIONABLE. Ask clarifying questions when needed.
+Provide exercise examples with sets/reps when appropriate.
+Consider user equipment availability (gym, home, bodyweight).
+
+Current user: ${currentUser ? `Name: ${currentUser.name}, Goal: ${currentUser.goal || 'Not specified'}` : 'New user'}
+
+Keep responses under 500 tokens. Use emojis for readability.`
+                    },
+                    {
+                        role: 'user',
+                        content: message
+                    }
+                ],
+                max_tokens: 500,
+                temperature: 0.8,
+                stream: false
+            })
+        });
+
+        console.log("📊 API Response Status:", response.status);
+        
+        if (response.status === 401) {
+            console.error("❌ API Key invalid or expired");
+            return "I need a valid API key. Please check your OpenRouter API key in settings or contact support.";
+        }
+        
+        if (response.status === 429) {
+            console.error("⚠️ Rate limited - too many requests");
+            return "I'm getting too many requests right now. Please wait a moment and try again.";
+        }
+        
+        if (response.status === 400) {
+            const errorData = await response.json();
+            console.error("❌ Bad request:", errorData);
+            return "There's an issue with the request. Please rephrase your question.";
+        }
+
+        if (!response.ok) {
+            console.error("❌ API Error:", response.statusText);
+            return `API Error: ${response.status}. Please try again.`;
+        }
+
+        const data = await response.json();
+        console.log("✅ API Success!");
+        
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+            return data.choices[0].message.content;
+        } else {
+            console.error("❌ Unexpected response format:", data);
+            return "I received an unexpected response. Please try again.";
+        }
+        
+    } catch (error) {
+        console.error("💥 Network Error:", error);
+        return getEnhancedFallbackResponse(message);
+    }
+}
+
+// Enhanced fallback for when API fails
+function getEnhancedFallbackResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // Create more detailed fallback responses
+    const responses = {
+        greetings: `👋 Hello! I'm your FlexGen AI Fitness Coach. I can help you with:
+
+🎯 **Goal Setting**: Weight loss, muscle gain, strength improvement, endurance
+💪 **Workout Planning**: Custom routines for gym, home, or outdoor training
+🥗 **Nutrition Guidance**: Meal plans, macro tracking, supplements
+🏃 **Cardio Programming**: HIIT, steady state, heart rate zones
+📊 **Progress Tracking**: How to measure and adjust your training
+🛡️ **Injury Prevention**: Proper form and recovery strategies
+
+What fitness challenge can I help you solve today?`,
+
+        workouts: `💪 **Workout Planning Guide**:
+
+**For Beginners** (3 days/week):
+• Day 1: Squats 3x10, Push-ups 3x8, Rows 3x10, Planks 3x30s
+• Day 2: Lunges 3x10, Dumbbell Press 3x10, Lat Pulldowns 3x10
+• Day 3: Full body circuit (20 min AMRAP)
+
+**For Intermediates** (4 days/week):
+• Push: Bench Press 4x8, Shoulder Press 3x10, Triceps 3x12
+• Pull: Deadlifts 3x5, Pull-ups 3x8, Rows 3x10, Biceps 3x12
+• Legs: Squats 4x8, Leg Press 3x10, Hamstring Curls 3x12
+• Full Body: Compound movements + conditioning
+
+**Equipment Options**:
+• Gym: Full access to machines and free weights
+• Home: Dumbbells, resistance bands, bodyweight
+• Outdoor: Park workouts, running, calisthenics
+
+What's your experience level and available equipment?`,
+
+        nutrition: `🥗 **Nutrition Fundamentals**:
+
+**Macro Calculator**:
+1. Protein: 1.6-2.2g per kg of body weight
+2. Carbs: 3-5g per kg (adjust based on activity)
+3. Fats: 0.8-1.2g per kg
+
+**Meal Timing**:
+• Breakfast (within 1h of waking): Protein + complex carbs
+• Pre-workout (1-2h before): Carbs + moderate protein
+• Post-workout (within 1h): Protein + fast carbs
+• Before bed: Slow-digesting protein (casein)
+
+**Food Sources**:
+• Protein: Chicken, fish, eggs, Greek yogurt, lentils
+• Carbs: Oats, rice, sweet potatoes, quinoa, fruits
+• Fats: Avocado, nuts, olive oil, fatty fish
+
+Try our Meal Plans section for complete templates!`,
+
+        default: `I'm here to provide expert fitness guidance! To give you personalized advice, please tell me:
+
+1. **Your main goal** (weight loss, muscle gain, strength, endurance)
+2. **Training frequency** (days per week you can commit)
+3. **Available equipment** (gym, home equipment, bodyweight only)
+4. **Any limitations** (injuries, time constraints, dietary restrictions)
+
+The more details you provide, the better I can help you achieve your fitness goals! 💪`
+    };
+
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return responses.greetings;
+    }
+    if (lowerMessage.includes('workout') || lowerMessage.includes('exercise') || lowerMessage.includes('training')) {
+        return responses.workouts;
+    }
+    if (lowerMessage.includes('diet') || lowerMessage.includes('nutrition') || lowerMessage.includes('food') || lowerMessage.includes('eat')) {
+        return responses.nutrition;
+    }
+    
+    return responses.default;
+}
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Prevent form submission on Enter in non-form fields
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.closest('form')) {
+                e.preventDefault();
+            }
+        });
+        async function debugAPI(message) {
+    const debugInfo = document.getElementById('debugInfo');
+    if (!debugInfo) return;
+    
+    debugInfo.innerHTML = `
+        <p><strong>Testing API with:</strong> "${message.substring(0, 50)}..."</p>
+        <p><strong>API Key:</strong> ${DEEPSEEK_CONFIG.apiKey ? 'Set (' + DEEPSEEK_CONFIG.apiKey.substring(0, 10) + '...)' : 'Not set'}</p>
+    `;
+    
+    try {
+        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${DEEPSEEK_CONFIG.apiKey}`,
+            },
+            body: JSON.stringify({
+                model: 'deepseek/deepseek-chat',
+                messages: [{ role: 'user', content: 'Hello' }],
+                max_tokens: 10
+            })
+        });
+        
+        debugInfo.innerHTML += `
+            <p><strong>Status:</strong> ${response.status} ${response.statusText}</p>
+        `;
+        
+        if (response.ok) {
+            const data = await response.json();
+            debugInfo.innerHTML += `<p><strong>Success! Response:</strong> ${JSON.stringify(data).substring(0, 100)}...</p>`;
+        } else {
+            const error = await response.text();
+            debugInfo.innerHTML += `<p><strong>Error:</strong> ${error.substring(0, 200)}</p>`;
+        }
+    } catch (error) {
+        debugInfo.innerHTML += `<p><strong>Exception:</strong> ${error.message}</p>`;
+    }
+}
+        
+    </script>
+</body>
+</html>
