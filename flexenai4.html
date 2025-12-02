@@ -1679,7 +1679,7 @@
     </label>
     <input type="password" id="apiKeyInput" class="form-control" 
            placeholder="Enter your OpenRouter API key" 
-           value="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">
+           value="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">
     <small style="color: var(--gray-700);">
         Required for AI features. Get free credits at 
         <a href="https://openrouter.ai/" target="_blank" style="color: var(--primary);">
@@ -2102,16 +2102,6 @@ function startIntervalTimer() {
     startTimer();
 }
 
-function updateTimerDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    const display = document.getElementById('timerDisplay');
-    
-    if (display) {
-        display.textContent = 
-            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-}
 
 function playTimerSound() {
     // Simple beep using Web Audio API
@@ -2746,7 +2736,7 @@ function closeChatHistory() {
         };
 const DEEPSEEK_CONFIG = {
     apiUrl: 'https://openrouter.ai/api/v1/chat/completions',
-    apiKey: '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',
+    apiKey: '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',
     model: 'deepseek/deepseek-chat',
     maxTokens: 500,
     temperature: 0.7
@@ -3472,7 +3462,7 @@ async function getAIResponse(message) {
     console.log("🤖 AI Chat Request:", message.substring(0, 50));
     
     // Test if API key is working first
-    if (!DEEPSEEK_CONFIG.apiKey || DEEPSEEK_CONFIG.apiKey === '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') {
+    if (!DEEPSEEK_CONFIG.apiKey || DEEPSEEK_CONFIG.apiKey === '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') {
         console.warn("⚠️ Using default API key - may be rate limited");
     }
     
@@ -3706,7 +3696,44 @@ The more details you provide, the better I can help you achieve your fitness goa
         debugInfo.innerHTML += `<p><strong>Exception:</strong> ${error.message}</p>`;
     }
 }
+// Add this function anywhere in your JavaScript
+async function testYourAPIKey() {
+    console.log("🔍 Testing your API key...");
+    
+    const apiKey = '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';
+    
+    try {
+        const response = await fetch('https://openrouter.ai/api/v1/auth/key', {
+            headers: { 
+                'Authorization': 'Bearer ' + apiKey,
+                'HTTP-Referer': 'http://localhost'
+            }
+        });
         
+        console.log("Status:", response.status);
+        
+        if (response.ok) {
+            const data = await response.json();
+            console.log("✅ API Key Valid!");
+            console.log("Credits:", data.credits || 0);
+            console.log("Usage:", data.usage || 0);
+            showNotification('API key is valid!', 'success');
+            return true;
+        } else {
+            const error = await response.text();
+            console.error("❌ API Key Invalid:", error);
+            showNotification('API key is invalid or expired', 'error');
+            return false;
+        }
+    } catch (error) {
+        console.error("💥 Network Error:", error);
+        showNotification('Network error testing API', 'error');
+        return false;
+    }
+}
+
+// Run this in browser console:
+// testYourAPIKey();
     </script>
 </body>
 </html>
